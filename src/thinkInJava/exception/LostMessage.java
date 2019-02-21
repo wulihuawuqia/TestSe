@@ -1,3 +1,4 @@
+/*
 package thinkInJava.exception;
 
 //: exceptions/LostMessage.java
@@ -36,6 +37,9 @@ public class LostMessage {
       System.out.println(e);
     }
   }
-} /* Output:
+} */
+/* Output:
 A trivial exception
-*///:~
+*//*
+//:~
+*/
