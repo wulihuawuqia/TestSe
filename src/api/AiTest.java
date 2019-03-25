@@ -9,21 +9,22 @@
 */
 package api;
 
-import java.security.MessageDigest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
 
+import java.security.MessageDigest;
+
 
 public class AiTest {
     
-    @Test
+    @org.junit.Test
     public void getTimestamp() {
         Long timestamp = System.currentTimeMillis()/1000;
         System.out.println(timestamp);
     }
-    
-    @Test 
+
+    @org.junit.Test
     public void getToken() {
         String appid = "material";
         String appkey = "YVWNM8crA5F1";
@@ -34,8 +35,8 @@ public class AiTest {
         System.out.println(token);
         System.out.println(MD5(appid+"_"+appkey+"_"+timestamp));
     }
-    
-    @Test
+
+    @org.junit.Test
     public void getBeginTime() {
         Long timestamp = System.currentTimeMillis()/1000;
         System.out.println("beginTime:"+(timestamp+30));
