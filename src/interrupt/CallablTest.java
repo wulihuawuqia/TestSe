@@ -23,5 +23,9 @@ public class CallablTest implements Callable {
     public Object call() throws Exception {
         return "call";
     }
+
+    public static void main(String[] args) {
+        new Thread((Runnable) new CallablTest()).start();
+    }
 }
 
