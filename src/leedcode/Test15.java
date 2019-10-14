@@ -18,8 +18,61 @@ public class Test15 {
 		System.out.println(JSON.toJSON(threeSumTwo(new int[]{-1, 0, 1, 2, -1, -4})));
 		System.out.println(JSON.toJSON(threeSumTwo(new int[]{0, 0, 0, 0})));
 		System.out.println(JSON.toJSON(threeSumTwo(new int[]{1,1,-2})));
+
+		System.out.println(JSON.toJSON(threeSumThree(new int[]{-1, 0, 1, 2, -1, -4})));
+		System.out.println(JSON.toJSON(threeSumThree(new int[]{0, 0, 0, 0})));
+		System.out.println(JSON.toJSON(threeSumThree(new int[]{1,1,-2})));
 	}
 
+	public static List<List<Integer>> threeSumThree(int [] nums){
+		List<List<Integer>> result = new ArrayList<>();
+		if(null == nums || nums.length < 3) {
+			return result;
+		}
+		Arrays.sort(nums);
+		for (int i = 0; i < nums.length; i++) {
+			int left = i+1;
+			int right = nums.length - 1;
+			if (nums[i] > 0){
+				break;
+			}
+			if(i > 0 && nums[i] == nums[i - 1]) {
+				continue;
+			}
+			while (left < right) {
+				int sum = nums[i] + nums[left] + nums[right];
+				if (sum == 0) {
+					result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+					// 去重
+					while (left < right && nums[left] == nums[left + 1]) {
+						left ++;
+					}
+					while (left < right && nums[right] == nums[right - 1]) {
+						right --;
+					}
+					left ++;
+					right --;
+				} else if (sum < 0) {
+					left ++;
+				} else if (sum > 0) {
+					right --;
+				}
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * 1、如果数组长度小于3 则直接返回空数组
+	 * 2、首先按从小打到排序
+	 * 3、然后遍历数组，如果元素大于0 直接结束遍历
+	 * 4、如果当前元素== 前一位元素，直接跳过
+	 * 5、设置标识位
+	 * 6、循环遍历元素，如果三数之和==0 则加入结果集，注意如果有两个元素相等，则跳过此元素
+	 * 7、
+	 * @param nums
+	 * @return
+	 */
 	public static List<List<Integer>> threeSumTwo(int[] nums) {
 		List<List<Integer>> result = new ArrayList<>();
 		Arrays.sort(nums);
