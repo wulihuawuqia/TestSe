@@ -8,12 +8,14 @@ public class IntegerTest {
 	@Test
 	public void Test1(){
 		Integer a=127;
+		Integer a1=127;
 		Integer b=new Integer(127);
 		int c=1;
 		Integer d=new Integer(127);
 		Integer e=1;
 		Integer f=1000;
 		Integer h=1000;
+		System.out.println(a==a1);
 		System.out.println(a==b);
 		System.out.println(a==c);
 		System.out.println(b==d);
