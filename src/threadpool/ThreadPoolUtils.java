@@ -9,6 +9,7 @@
 package threadpool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -37,5 +38,10 @@ public class ThreadPoolUtils {
                 0L, TimeUnit.MILLISECONDS,
                 new SynchronousQueue<>(), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
         return singleThreadPool;
+    }
+
+    @Test
+    public void testTimeUnit() {
+        System.out.println(TimeUnit.MILLISECONDS.toNanos(0));
     }
 }

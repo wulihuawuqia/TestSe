@@ -25,6 +25,7 @@ public class LockTemplete {
 
 
     public static void main(String[] args) {
+        /* 可重入锁 */
         Lock lock = new ReentrantLock();
         ExecutorService executorService = ThreadPoolUtils.getThredPool();
         for (int i = 0; i < 20; i++) {
