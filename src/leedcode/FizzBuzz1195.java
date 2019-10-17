@@ -99,9 +99,9 @@ public class FizzBuzz1195 {
             }
 			number.acquire();
             bool.set(Boolean.FALSE);
-			fizzbuzz.release(2);
-			fizz.release(2);
-			buzz.release(2);
+			fizzbuzz.release();
+			fizz.release();
+			buzz.release();
         }
     }
 
@@ -118,14 +118,16 @@ public class FizzBuzz1195 {
 		private CountDownLatch buzz = new CountDownLatch(1);
 		private CountDownLatch fizzbuzz = new CountDownLatch(1);
 		private CountDownLatch number = new CountDownLatch(3);
-
-		private volatile AtomicInteger i = new AtomicInteger(1);
+		private volatile AtomicBoolean bool = new AtomicBoolean(true);
 
 		// printFizz.run() outputs "fizz".
 		public void fizz(Runnable printFizz) throws InterruptedException {
 			number.countDown();
-			while (i.get() <= n) {
+			while (true) {
 				fizz.await();
+				if (!bool.get()) {
+					break;
+				}
 				printFizz.run();
 				fizz = new CountDownLatch(1);
 				number.countDown();
@@ -135,8 +137,11 @@ public class FizzBuzz1195 {
 		// printBuzz.run() outputs "buzz".
 		public void buzz(Runnable printBuzz) throws InterruptedException {
 			number.countDown();
-			while (i.get() <= n) {
+			while (true) {
 				buzz.await();
+				if (!bool.get()) {
+					break;
+				}
 				printBuzz.run();
 				buzz = new CountDownLatch(1);
 				number.countDown();
@@ -146,8 +151,11 @@ public class FizzBuzz1195 {
 		// printFizzBuzz.run() outputs "fizzbuzz".
 		public void fizzbuzz(Runnable printFizzBuzz) throws InterruptedException {
 			number.countDown();
-			while (i.get() <= n) {
+			while (true) {
 				fizzbuzz.await();
+				if (!bool.get()) {
+					break;
+				}
 				printFizzBuzz.run();
 				fizzbuzz = new CountDownLatch(1);
 				number.countDown();
@@ -157,21 +165,26 @@ public class FizzBuzz1195 {
 		// printNumber.accept(x) outputs "x", where x is an integer.
 		public void number(IntConsumer printNumber) throws InterruptedException {
 			number.await();
-			for (; i.get() <= n ; i.incrementAndGet()) {
+			for (int i = 1; i <= n ; i++) {
 				number.await();
-				if (i.get()%3 == 0 && i.get()%5 == 0) {
+				if (i%3 == 0 && i%5 == 0) {
 					fizzbuzz.countDown();
 					number = new CountDownLatch(1);
-				} else if (i.get()%3 == 0){
+				} else if (i%3 == 0){
 					fizz.countDown();
 					number = new CountDownLatch(1);
-				} else if (i.get()%5 == 0){
+				} else if (i%5 == 0){
 					buzz.countDown();
 					number = new CountDownLatch(1);
 				} else {
-					printNumber.accept(i.get());
+					printNumber.accept(i);
 				}
 			}
+			number.await();
+			bool.set(Boolean.FALSE);
+			fizzbuzz.countDown();
+			fizz.countDown();
+			buzz.countDown();
 		}
 	}
 
@@ -254,7 +267,7 @@ public class FizzBuzz1195 {
 
     @Test
     public void main() throws InterruptedException {
-        FizzBuzz foo = new FizzBuzz(15);
+        FizzBuzz1 foo = new FizzBuzz1(15);
 
         Thread fizz = new Thread(new Runnable() {
             @Override
@@ -313,38 +326,39 @@ public class FizzBuzz1195 {
 			}
 		});
 
-
-
         ExecutorService threadPool = Executors.newCachedThreadPool();
 
 		threadPool.execute(number);
 		//Thread.sleep(1000);
-        threadPool.execute(fizz);
+        //threadPool.execute(fizz);
 		//Thread.sleep(1000);
         threadPool.execute(buzz);
 		//Thread.sleep(1000);
         threadPool.execute(fizzbuzz);
 		//Thread.sleep(1000);
-		/*foo.fizz(new Runnable() {
+		foo.fizz(new Runnable() {
 			@Override
 			public void run() {
 				System.out.println("fizz");
 			}
-		});*/
+		});
 
-		foo.fizzbuzz(new Runnable() {
+		/*foo.fizzbuzz(new Runnable() {
 			@Override
 			public void run() {
 				System.out.println("fizzbuzz");
 			}
-		});
+		});*/
+		/*foo.number((int i) -> {
+			System.out.println(i);
+		});*/
+
+
 		/*System.out.println(fizz.getState());
 		System.out.println(buzz.getState());
 		System.out.println(fizzbuzz.getState());
 		System.out.println(Thread.currentThread().getState());*/
-       /* foo.number((int i) -> {
-            System.out.println(i);
-        });*/
+
 		//Thread.sleep(1000);
         threadPool.shutdown();
 
