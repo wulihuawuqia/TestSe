@@ -10,7 +10,9 @@ package leedcode;
 
 import org.junit.Test;
 
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
@@ -26,7 +28,7 @@ public class FooBar1115 {
 
     @Test
     public void main() throws InterruptedException {
-        FooBar foo = new FooBar(1);
+        FooBarNew foo = new FooBarNew(5);
 
         Thread t1 = new Thread(new Runnable() {
             @Override
@@ -38,7 +40,7 @@ public class FooBar1115 {
                             System.out.print("foo");
                         }
                     });
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -53,7 +55,7 @@ public class FooBar1115 {
                             System.out.print("bar");
                         }
                     });
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -70,7 +72,7 @@ public class FooBar1115 {
 
     }
 
-    static class FooBar {
+     class FooBar {
         private int n;
 
         private Lock lock = new ReentrantLock();
@@ -114,6 +116,46 @@ public class FooBar1115 {
                 e.printStackTrace();
             } finally {
                 lock.unlock();
+            }
+        }
+    }
+
+    class FooBarNew {
+        private int n;
+
+        private CyclicBarrier foobar = new CyclicBarrier(2);
+        private CyclicBarrier bar = new CyclicBarrier(2);
+
+        public FooBarNew(int n) {
+            this.n = n;
+        }
+
+        public void foo(Runnable printFoo) throws InterruptedException{
+            try {
+                for (int i = 0; i < n; i++) {
+                    // printFoo.run() outputs "foo". Do not change or remove this line.
+                    printFoo.run();
+                    bar.await();
+                    foobar.await();
+                    foobar.reset();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        public void bar(Runnable printBar) throws InterruptedException {
+            try {
+                for (int i = 0; i < n; i++) {
+                    bar.await();
+                    bar.reset();
+                    // printBar.run() outputs "bar". Do not change or remove this line.
+                    printBar.run();
+                    foobar.await();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

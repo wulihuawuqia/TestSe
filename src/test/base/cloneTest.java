@@ -1,10 +1,7 @@
 package test.base;
 
-import api.SystemOut;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
-
 import java.lang.reflect.InvocationTargetException;
 
 /**
