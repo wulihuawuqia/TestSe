@@ -28,7 +28,7 @@ public class FooBar1115 {
 
     @Test
     public void main() throws InterruptedException {
-        FooBarNew foo = new FooBarNew(5);
+        FooBar foo = new FooBar(5);
 
         Thread t1 = new Thread(new Runnable() {
             @Override
@@ -63,11 +63,13 @@ public class FooBar1115 {
 
         ExecutorService threadPool = Executors.newCachedThreadPool();
         threadPool.execute(t1);
-        Thread.sleep(1000L);
-        threadPool.execute(t2);
-        while (t1.getState().equals(Thread.State.TERMINATED) && t2.getState().equals(Thread.State.TERMINATED)) {
-
-        }
+        //threadPool.execute(t2);
+        foo.bar(new Runnable() {
+            @Override
+            public void run() {
+                System.out.print("bar");
+            }
+        });
         threadPool.shutdown();
 
     }
@@ -78,7 +80,6 @@ public class FooBar1115 {
         private Lock lock = new ReentrantLock();
         private Condition foobar = lock.newCondition();
         private Condition bar = lock.newCondition();
-        private volatile Boolean bool = Boolean.FALSE;
         private CountDownLatch start = new CountDownLatch(1);
 
         public FooBar(int n) {
