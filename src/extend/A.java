@@ -10,6 +10,16 @@
 package extend;
 
 public class A {
+    private String a = "a";
+
+    public String getA() {
+        return a;
+    }
+
+    public void setA(String a) {
+        this.a = a;
+    }
+
     public String show(D obj) {
         return "A and D";
     }
