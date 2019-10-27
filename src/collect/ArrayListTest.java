@@ -45,6 +45,7 @@ public class ArrayListTest {
     @Test
     public void test(){
         Hashtable hashtable = new Hashtable();
+        HashMap hashMap = new HashMap();
         System.out.println(1<<4);
         System.out.println(1>>4);
     }
