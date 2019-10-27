@@ -10,12 +10,29 @@
 package extend;
 
 public class B extends A {
-    
+
+    private String b = "b";
+
+    public String getB() {
+        return b;
+    }
+
+    public void setB(String b) {
+        this.b = b;
+    }
+
     public String show(B obj) {
         return "B and B";
     }
     
     public String show(A obj) {
         return "B and A";
+    }
+
+    public static void main(String[] args) {
+        A b = new B();
+        System.out.println(((B) b).getB());
+		A a = (A) b;
+        System.out.println(((B) a).getB());
     }
 }
