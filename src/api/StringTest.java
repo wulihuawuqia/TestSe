@@ -66,4 +66,12 @@ public class StringTest {
 		String  b = String.format(a, 1 ,2);
 		System.out.println(b);
 	}
+
+	@Test
+	public void testReplace() {
+		String a ="a|b|c|d";
+		String  b = a.replace("|","&#13;");
+		System.out.println(b);
+	}
+
 }

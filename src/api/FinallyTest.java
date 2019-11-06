@@ -11,7 +11,7 @@ public class FinallyTest {
             e.printStackTrace();
             //return "Exception";
             throw e;
-        }finally {
+        } finally {
             System.out.println("finally block");
             return test1();
         }
