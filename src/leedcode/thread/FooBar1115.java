@@ -6,7 +6,7 @@
  * 版本: 1.0
  * 修改记录:
  */
-package leedcode;
+package leedcode.thread;
 
 import org.junit.Test;
 

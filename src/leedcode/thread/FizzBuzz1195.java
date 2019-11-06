@@ -6,7 +6,7 @@
  * 版本: 1.0
  * 修改记录:
  */
-package leedcode;
+package leedcode.thread;
 
 import org.junit.Test;
 
@@ -94,7 +94,7 @@ public class FizzBuzz1195 {
                     buzz.release();
                 } else {
                     printNumber.accept(i);
-					number.release();
+                    number.release();
                 }
             }
 			number.acquire();
@@ -114,7 +114,7 @@ public class FizzBuzz1195 {
 			this.n = n;
 		}
 
-		private CountDownLatch fizz = new CountDownLatch(1);
+        private CountDownLatch fizz = new CountDownLatch(1);
 		private CountDownLatch buzz = new CountDownLatch(1);
 		private CountDownLatch fizzbuzz = new CountDownLatch(1);
 		private CountDownLatch number = new CountDownLatch(3);
