@@ -54,6 +54,7 @@ public class RemoveOuterParentheses {
     public static String removeOuterParentheses(String S) {
         StringBuffer result = new StringBuffer();
         char [] chars = S.toCharArray();
+        // 用标记 -1 记录当前状态
         int mark = -1;
         for (int i = 0; i < chars.length; i ++) {
             if (chars[i] == '(') {
