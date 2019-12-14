@@ -27,5 +27,7 @@ public class Son extends Father {
         Son son = new Son();
         ((Father)son).show();
         //new Father(1).show();
+        Father father = new Son();
+        System.out.println(father.getClass().getSimpleName());
     }
 }
