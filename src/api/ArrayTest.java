@@ -11,6 +11,8 @@ public class ArrayTest {
 	@Test
 	public void Test1(){
 		int [][] arr = new int[5][5];
+		String [] strs = new String[5];
+		strs[0]  = "1";
 		int len=arr.length;
 		for(int i=0;i<len;i++){
 			System.out.println(Arrays.toString(arr[i]));
