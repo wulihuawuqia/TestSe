@@ -22,7 +22,7 @@ public class BubbleSort {
     }
 
     /**
-     * 
+     * j
      * @param arr 异常/参数
      * @author 伍恰  
      * @date 2018年3月2日 上午9:21:11
@@ -30,10 +30,24 @@ public class BubbleSort {
     private static void sort(int[] arr) {
         int len = arr.length;
         //遍历
-        for (int i = 0; i < len-1; i++) {
+        for (int i = 0; i < len - 1; i++) {
             for (int j = i+1; j < len; j++) {
                 //交换顺序
                 if(arr[i] > arr[j]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+
+    private static void sort1(int [] arr) {
+        int len = arr.length;
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = i + 1; j < len; j++) {
+                // 交换顺序
+                if (arr[i] > arr[j]) {
                     int temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
