@@ -32,6 +32,12 @@
 
     <dependencies>
 
+        <!-- 工具包 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.0.3</version>
+        </dependency>
         <!-- spring 配置 -->
 
         <!-- spring 核心包 -->
