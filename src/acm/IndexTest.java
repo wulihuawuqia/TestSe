@@ -76,13 +76,11 @@ public class IndexTest {
     private List treeList = new TreeList();
 
     public List<Integer> get(Integer i) {
-        for () {
-
-        }
+      return null;
     }
 
     public Node biSearch() {
-
+        return null;
     }
 
 

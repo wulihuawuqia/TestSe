@@ -60,15 +60,15 @@ public class JsonUtil {
         Boolean b = true;
         System.out.println(toJson(b));
         List<String> list = new ArrayList<String>();
-        list.add("aaa");
+        list.add("calc");
         list.add("bbb");
         System.out.println(toJson(list));
         Set<String> set = new HashSet<String>();
-        set.add("aaa");
+        set.add("calc");
         set.add("bbb");
         System.out.println(toJson(list));
         Map<String,String> map = new HashMap<String,String>();
-        map.put("aaa","a1");
+        map.put("calc","a1");
         map.put("bbb","b1");
         System.out.println(toJson(map));
     }
