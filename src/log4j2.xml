@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml versio="1.0" encoding="UTF-8"?>
 <Configuration status="info">
 	<Appenders>
 		<RollingFile name="RollingFile" fileName="/riking/logs/icirs/app-api.log"

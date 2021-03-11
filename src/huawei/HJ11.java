@@ -8,8 +8,6 @@
  */
 package huawei;
 
-import com.alibaba.druid.sql.visitor.functions.Char;
-
 import java.util.Scanner;
 
 /**

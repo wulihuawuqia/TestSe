@@ -8,8 +8,6 @@
  */
 package huawei;
 
-import cn.hutool.http.webservice.SoapUtil;
-
 import java.util.Scanner;
 
 /**

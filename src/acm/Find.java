@@ -3,7 +3,7 @@ package acm;
 public class Find {
 	
 	public static void main(String[] args) {
-		int [][] array={{1,2},{2,3}};
+		int [][] array={{1,2},{2,3},{2,3},{1,3}};
 		int target=1;//需要查找的值
 		int row=-1;
 		int rows=array.length-1;//行数；

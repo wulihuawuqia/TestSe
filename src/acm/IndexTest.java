@@ -8,7 +8,6 @@
  */
 package acm;
 
-import org.apache.commons.collections.list.TreeList;
 
 import java.util.List;
 
@@ -46,6 +45,9 @@ public class IndexTest {
     }
 
     private class Node {
+        /**
+         * index
+         */
         private Index index;
         private List<Integer> list;
 
@@ -73,7 +75,7 @@ public class IndexTest {
 
     }
 
-    private List treeList = new TreeList();
+    private List treeList = new org.apache.commons.collections.list.TreeList();
 
     public List<Integer> get(Integer i) {
       return null;

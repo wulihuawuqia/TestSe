@@ -17,12 +17,20 @@ public class WaitTest implements Runnable{
 
     Boolean lock;
 
+    static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+
     WaitTest(Boolean lock) {
         this.lock = lock;
     }
 
     @Override
     public void run() {
+        String threadStr = threadLocal.get();
+        if (null != threadStr) {
+            System.out.println(threadStr);
+        } else {
+            threadLocal.set(Thread.currentThread().getName());
+        }
         synchronized (lock){
             Long curTime;
             int count = 5;
@@ -39,10 +47,12 @@ public class WaitTest implements Runnable{
             curTime = System.currentTimeMillis()/1000;
             System.out.println(Thread.currentThread().getName() + "curTime" + curTime);
         }
+        System.out.println("threadLocal：" + threadLocal.get());
     }
 
     public static void main(String[] args) {
         Boolean lock = Boolean.TRUE;
+        threadLocal.set(Thread.currentThread().getName());
         new Thread(new WaitTest(lock),"A").start();
         new Thread(new WaitTest(lock),"B").start();
         try {
@@ -54,5 +64,6 @@ public class WaitTest implements Runnable{
         synchronized (lock) {
             lock.notifyAll();
         }
+        System.out.println("threadLocal：" + threadLocal.get());
     }
 }
