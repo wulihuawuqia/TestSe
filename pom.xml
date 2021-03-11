@@ -9,7 +9,7 @@
         <spring.version>4.3.9.RELEASE</spring.version>
         <mybatis.version>3.4.1</mybatis.version>
         <mybatis-spring.version>1.3.0</mybatis-spring.version>
-        <mysql.version>5.1.38</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <junit.version>4.12</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <powermock-api-mockito.version>1.6.5</powermock-api-mockito.version>
