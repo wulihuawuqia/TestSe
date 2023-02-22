@@ -23,7 +23,7 @@
         <jxl.version>2.6.10</jxl.version>
         <servlet-api.version>3.1.0</servlet-api.version>
         <commons-io.version>2.4</commons-io.version>
-        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <commons-fileupload.version>1.5</commons-fileupload.version>
         <jackson.version>2.8.5</jackson.version>
         <commons-logging.version>1.1.3</commons-logging.version>
         <log4j.version>1.2.17</log4j.version>
